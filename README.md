@@ -1,9 +1,9 @@
-**Voici un simple générateur de nitro fais en python et entièrement en français avec une utilisation facile**
+# Voici un simple générateur de nitro fais en python et entièrement en français avec une utilisation facile
 
-# COMMENT UTILISER :
+## COMMENT UTILISER :
 
 Installez Python (durant l'installation de python faites bien ajouter Python au PATH)
 Lancez "Setup.bat"
 
-# MON SERVEUR DISCORD :
+## MON SERVEUR DISCORD :
 https://discord.gg/shop2tout
