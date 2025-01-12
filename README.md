@@ -3,6 +3,7 @@
 ## COMMENT UTILISER :
 
 Installez Python (durant l'installation de python faites bien ajouter Python au PATH)
+
 Lancez "Setup.bat"
 
 ## MON SERVEUR DISCORD :
