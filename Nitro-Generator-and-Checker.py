@@ -1,6 +1,7 @@
 import os
 import random
 import time
+import requests
 from colorama import Fore, Style, init
 from tqdm import tqdm
 
@@ -18,20 +19,26 @@ def afficher_menu():
  | |\  | | (_| | (_| | (_| | | |__| |  __/ | | |  __/ | | (_| | || (_) | |   
  |_| \_|_|\__, |\__, |\__,_|  \_____|\___|_| |_|\___|_|  \__,_|\__\___/|_|   
            __/ | __/ |                                                       
-          |___/ |___/                                                         
+          |___/ |___/                                                          
     """)
 
     print(Fore.YELLOW + "[1] Nitro Generator")
-    print(Fore.YELLOW + "[2] Credits")
+    print(Fore.YELLOW + "[2] Nitro Checker")
+    print(Fore.YELLOW + "[3] Credits")
     print(Fore.YELLOW + "[0] Close\n")
 
 def generer_code():
     caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     return ''.join(random.choices(caracteres, k=16))
 
+def verifier_nitro(code):
+    url = f"https://discordapp.com/api/v9/entitlements/gift-codes/{code}?with_application=false&with_subscription_plan=true"
+    response = requests.get(url)
+    return response.status_code == 200
+
 def afficher_credits():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(Fore.YELLOW + "Ce generateur a ete creer par YoannCHVL")
+    print(Fore.YELLOW + "Ce tool a été créé par YoannCHVL")
     print(Fore.YELLOW + "Si vous avez des questions rejoignez ce serveur discord : https://discord.gg/shop2tout")
     print(Fore.MAGENTA + "[->] Faites entrer pour revenir au menu")
     input()
@@ -66,8 +73,38 @@ def main():
                 time.sleep(2)
         
         elif choix == "2":
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(Fore.YELLOW + "Le Nitro Checker va checker les nitro de 'nitro.txt'...")
+            try:
+                with open("nitro.txt", "r") as fichier:
+                    lignes = fichier.readlines()
+
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print(Fore.YELLOW + "Lancement du Nitro Checker...\n")
+                valid_codes = []
+
+                for ligne in tqdm(lignes, bar_format="{l_bar}%s{bar}%s{r_bar}" % (Fore.RED, Style.RESET_ALL)):
+                    code = ligne.strip().split('/')[-1]
+                    if verifier_nitro(code):
+                        valid_codes.append(ligne.strip())
+
+                if valid_codes:
+                    with open("validnitro.txt", "w") as valid_fichier:
+                        for valid_code in valid_codes:
+                            valid_fichier.write(valid_code + "\n")
+                    print(Fore.GREEN + "\nLes codes valides ont été stockés dans 'validnitro.txt'.")
+                else:
+                    print(Fore.RED + "\nAucun code valide trouvé.")
+
+                print(Fore.MAGENTA + "[->] Faites entrer pour revenir au menu")
+                input()
+            except FileNotFoundError:
+                print(Fore.RED + "[Erreur] Le fichier 'nitro.txt' n'a pas été trouvé.")
+                time.sleep(2)
+
+        elif choix == "3":
             afficher_credits()
-        
+
         elif choix == "0":
             print(Fore.RED + ":(")
             break
