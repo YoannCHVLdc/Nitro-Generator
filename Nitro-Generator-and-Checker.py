@@ -24,8 +24,8 @@ def afficher_menu():
 
     print(Fore.YELLOW + "[1] Nitro Generator")
     print(Fore.YELLOW + "[2] Nitro Checker")
-    print(Fore.YELLOW + "[3] Credits")
-    print(Fore.YELLOW + "[0] Close\n")
+    print(Fore.YELLOW + "[3] Crédits")
+    print(Fore.YELLOW + "[0] Fermer\n")
 
 def generer_code():
     caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
