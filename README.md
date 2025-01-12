@@ -7,4 +7,4 @@ Installez Python (durant l'installation de python faites bien ajouter Python au 
 Lancez "Setup.bat"
 
 ## MON SERVEUR DISCORD :
-https://discord.gg/shop2tout
+https://discord.gg/Jm2huzaMBm
