@@ -1,4 +1,4 @@
-# Voici un simple générateur de nitro fais en python et entièrement en français avec une utilisation facile
+# Voici un simple générateur et checker de nitro fais en python et entièrement en français avec une utilisation facile
 
 ## COMMENT UTILISER :
 
