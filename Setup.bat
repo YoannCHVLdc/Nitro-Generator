@@ -1,4 +1,5 @@
 pip install tqdm
 pip install colorama
-python Nitro-Generator.py
+pip install requests
+python Nitro-Generator-and-Checker.py
 end
