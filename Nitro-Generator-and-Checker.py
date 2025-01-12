@@ -5,7 +5,7 @@ import requests
 from colorama import Fore, Style, init
 from tqdm import tqdm
 
-os.system("title Nitro Generator by YoannCHVL .gg/shop2tout")
+os.system("title Nitro Generator by YoannCHVL .gg/Jm2huzaMBm")
 
 init(autoreset=True)
 
@@ -39,7 +39,7 @@ def verifier_nitro(code):
 def afficher_credits():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Fore.YELLOW + "Ce tool a été créé par YoannCHVL")
-    print(Fore.YELLOW + "Si vous avez des questions rejoignez ce serveur discord : https://discord.gg/shop2tout")
+    print(Fore.YELLOW + "Si vous avez des questions rejoignez ce serveur discord : https://discord.gg/Jm2huzaMBm")
     print(Fore.MAGENTA + "[->] Faites entrer pour revenir au menu")
     input()
 
