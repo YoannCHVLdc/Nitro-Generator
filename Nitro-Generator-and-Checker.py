@@ -9,6 +9,8 @@ os.system("title Nitro Generator by YoannCHVL .gg/Jm2huzaMBm")
 
 init(autoreset=True)
 
+webhook_url = None
+
 def afficher_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Fore.CYAN + """
@@ -24,7 +26,8 @@ def afficher_menu():
 
     print(Fore.YELLOW + "[1] Nitro Generator")
     print(Fore.YELLOW + "[2] Nitro Checker")
-    print(Fore.YELLOW + "[3] Crédits")
+    print(Fore.YELLOW + "[3] Utiliser un Webhook")
+    print(Fore.YELLOW + "[4] Crédits")
     print(Fore.YELLOW + "[0] Fermer\n")
 
 def generer_code():
@@ -36,10 +39,27 @@ def verifier_nitro(code):
     response = requests.get(url)
     return response.status_code == 200
 
+def envoyer_webhook(code):
+    if webhook_url:
+        payload = {
+            "content": f"Code Nitro valide trouvé : {code}"
+        }
+        requests.post(webhook_url, json=payload)
+
 def afficher_credits():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Fore.YELLOW + "Ce tool a été créé par YoannCHVL")
     print(Fore.YELLOW + "Si vous avez des questions rejoignez ce serveur discord : https://discord.gg/Jm2huzaMBm")
+    print(Fore.MAGENTA + "[->] Faites entrer pour revenir au menu")
+    input()
+
+def configurer_webhook():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(Fore.YELLOW + "Entrez l'URL du webhook Discord que vous souhaitez utiliser :")
+    global webhook_url
+    webhook_url = input(Fore.CYAN + "[->] URL du webhook : ")
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(Fore.GREEN + "Webhook configuré avec succès !\n")
     print(Fore.MAGENTA + "[->] Faites entrer pour revenir au menu")
     input()
 
@@ -87,7 +107,9 @@ def main():
                     code = ligne.strip().split('/')[-1]
                     if verifier_nitro(code):
                         valid_codes.append(ligne.strip())
+                        envoyer_webhook(ligne.strip())
 
+                os.system('cls' if os.name == 'nt' else 'clear')
                 if valid_codes:
                     with open("validnitro.txt", "w") as valid_fichier:
                         for valid_code in valid_codes:
@@ -103,6 +125,9 @@ def main():
                 time.sleep(2)
 
         elif choix == "3":
+            configurer_webhook()
+
+        elif choix == "4":
             afficher_credits()
 
         elif choix == "0":
